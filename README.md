@@ -4,7 +4,7 @@ This repository contains a smart contract implementation called `smartContract` 
 
 ## Smart Contract
 
-The main smart contract in this repository is `AssertionContract.sol`. It showcases the usage of the following statements:
+The main smart contract in this repository is `assessmentMod1.sol`. It showcases the usage of the following statements:
 
 - **`require()`**: The `require()` statement is used to validate conditions before executing the rest of the function. If any of the conditions are not met, the function will throw an exception with the provided error message.
 
