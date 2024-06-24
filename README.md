@@ -1,6 +1,6 @@
 ## Function and Errors Contract
 
-This repository contains a smart contract implementation called `smartContract` that demonstrates the usage of `require()`, `assert()`, and `revert()` statements in Solidity.
+This repository contains a smart contract implementation called `smartContract` that demonstrates the usage of `require()`, `assert()`, and `revert()` statements in Solidity...
 
 ## Smart Contract
 
