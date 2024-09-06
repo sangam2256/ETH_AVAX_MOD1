@@ -1,21 +1,30 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract smartContract {
-    function doSomething(uint256 x, uint256 y) public pure returns (uint256) {
-        // Using require()
-        require(x != 0, "x should not be zero");
-        require(y != 0, "y should not be zero");
-        
-        // Using assert()
-        uint256 result = x + y;
-        assert(result >= x && result >= y);
+contract SimpleStore {
+    uint256 public stock;
 
-        // Using revert()
-        if (x > y) {
-            revert("x should be smaller than or equal to y");
+    function setStock(uint256 _stock) public {
+        require(_stock > 0, "tock must be greater than zeroS");    //used require function
+        stock = _stock;
+    }
+
+    function purchase(uint256 quantity) public {
+        require(quantity > 0, "Quantity must be greater than zero");
+        require(stock >= quantity, "Not enough stock");
+
+        uint256 newStock = stock - quantity;
+        assert(newStock <= stock);                                  //used assert function
+
+        if (quantity > 5) {
+            revert("Cannot purchase more than 5 items at once");    //used revert function
         }
-        
-        return result;
+
+        stock = newStock;
+    }
+
+    function checkStock() public view returns (uint256) {
+        return stock;
     }
 }
+
