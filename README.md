@@ -1,5 +1,6 @@
 # SimpleStore 
 ##(Functions and Errors - ETH + AVAX)
+
 A smart contract for managing inventory on the Ethereum blockchain. It allows users to set stock levels, purchase items, and check available stock.
 
 ## Description
