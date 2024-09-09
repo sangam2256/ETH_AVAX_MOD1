@@ -1,24 +1,70 @@
-# SimpleStore Smart Contract
+# SimpleStore 
+(Functions and Errors - ETH + AVAX)
+A smart contract for managing inventory on the Ethereum blockchain. It allows users to set stock levels, purchase items, and check available stock.
 
-This repository contains a simple Solidity contract called `SimpleStore`, which demonstrates error handling in Solidity using `require()`, `assert()`, and `revert()` statements.
+## Description
 
-## Features
+SimpleStore is a Solidity-based smart contract that helps track and manage the stock of items in a store. The contract allows setting stock, purchasing items, and viewing current stock levels. The code also demonstrates error handling techniques using `require()`, `assert()`, and `revert()` functions.
 
-- **`require()`**: Used to validate input conditions before execution, such as checking stock availability and valid purchase quantities.
-- **`assert()`**: Ensures internal consistency by verifying post-conditions, like the correct update of stock after a purchase.
-- **`revert()`**: Explicitly used to revert transactions when certain conditions are not met, like limiting the purchase quantity.
+## Getting Started
 
-## Development
+### Installing
 
-1. Fork and clone the repository.
-2. Modify the code or add new features.
-3. Write tests and ensure all pass.
-4. Commit, push changes, and submit a pull request.
+* Download the code from Remix IDE or clone the repository.
+* No additional modifications are needed.
+
+### Executing program
+
+1. Open [Remix IDE](https://remix.ethereum.org).
+2. Create a new file named `SimpleStore.sol`.
+3. Copy and paste the following code:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SimpleStore {
+    uint256 public stock;
+
+    function setStock(uint256 _stock) public {
+        require(_stock > 0, "Stock must be greater than zero");
+        stock = _stock;
+    }
+
+    function purchase(uint256 quantity) public {
+        require(quantity > 0, "Quantity must be greater than zero");
+        require(stock >= quantity, "Not enough stock");
+
+        uint256 newStock = stock - quantity;
+        assert(newStock <= stock);
+
+        if (quantity > 5) {
+            revert("Cannot purchase more than 5 items at once");
+        }
+
+        stock = newStock;
+    }
+
+    function checkStock() public view returns (uint256) {
+        return stock;
+    }
+}
+```
+
+4. Compile and deploy the contract in Remix.
+
+## Help
+
+If you encounter issues during deployment or execution:
+```
+Check the Remix console for error messages
+```
+
+## Authors
+
+Sangam Kumar
+Chandigarh University
 
 ## License
 
-This project is licensed under the MIT License.
-
-## Acknowledgments
-
-This is an educational project showcasing error handling in Solidity. It is not intended for production use.
+This project is licensed under the MIT License. See the LICENSE file for details.
